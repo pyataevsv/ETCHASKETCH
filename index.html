@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //  make button
+    const but = document.createElement('button');
+    const redbut = document.createElement('button');
+    const body = document.querySelector('body');
+    but.textContent = 'Set grid scale';
+    redbut.textContent = 'red';
+    body.style.textAlign = 'center';
+    but.style.padding = '10px';
+    but.style.margin = '20px auto';
+    but.style.fontSize = '150%';
+    but.style.display = 'block';
+    body.appendChild(but);
+    console.log(but);
+
+
+    // make grid-box
+
+    const gridbox = document.createElement('div');
+    gridbox.style.cssText = 
+        `width: 600px;
+        height: 600px; 
+        border: 2px solid black; 
+        margin:auto;
+        display: inline-grid;`
+        
+
+    body.appendChild(gridbox);
+
+    // add event on button
+    let scale;
+    but.addEventListener('click',() =>{
+        scale = prompt('input grid scale');
+        
+        if(scale.match(/^[0-9]+$/) == null){
+            console.log('wtf');
+        } else {
+            updateGrid(scale);
+        };
+       // updateGrid(scale);
+    })
+
+    //make div grid  
+    updateGrid(20);  
+
+    function updateGrid(scale){
+        let auto = '';
+        gridbox.innerHTML = '';
+        console.log(scale);
+        for(let i = 0; i < scale; i++) {auto += 'auto ';}
+        for(let i = 0; i< scale*scale ; i++){
+            const cell = document.createElement('div');
+            
+            // cell.style.border = '0.5px solid white';
+            gridbox.style.gridTemplateColumns = auto;
+            console.log(auto);
+            cell.addEventListener('mouseenter',(e) =>{
+                cell.style.backgroundColor = getRandColor();
+            })
+            // cell.addEventListener('mouseleave',(e) =>{
+            //     cell.style.backgroundColor = 'white';
+            // })
+            gridbox.appendChild(cell);
+        }
+        
+    }
+
+    function getRandColor(){
+
+        return 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+        //return 'red';
+    }
+
+    //set hover
+    
+    
+    
+    
+
+</script>
+</body>
+</html>
