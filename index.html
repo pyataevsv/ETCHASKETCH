@@ -10,17 +10,49 @@
 <script>
     //  make button
     const but = document.createElement('button');
+    const rbut = document.createElement('button');
     const redbut = document.createElement('button');
+    const erasebut = document.createElement('button');
     const body = document.querySelector('body');
+    const header = document.createElement('header');
     but.textContent = 'Set grid scale';
     redbut.textContent = 'red';
+    rbut.textContent = 'random';
+    erasebut.textContent = 'erase';
     body.style.textAlign = 'center';
     but.style.padding = '10px';
     but.style.margin = '20px auto';
     but.style.fontSize = '150%';
-    but.style.display = 'block';
-    body.appendChild(but);
+    but.style.display = 'inline-block';
+    rbut.style.padding = '10px';
+    rbut.style.margin = '20px auto';
+    rbut.style.fontSize = '150%';
+    rbut.style.display = 'inline-block';
+    redbut.style.display = 'inline-block';
+    redbut.style.padding = '10px';
+    redbut.style.margin = '20px auto';
+    redbut.style.fontSize = '150%';
+    erasebut.style.display = 'inline-block';
+    erasebut.style.padding = '10px';
+    erasebut.style.margin = '20px auto';
+    erasebut.style.fontSize = '150%';
+    body.appendChild(header);
+    header.appendChild(but);
+    header.appendChild(redbut);
+    header.appendChild(erasebut);
+    header.appendChild(rbut);
     console.log(but);
+    let color = 'random';
+
+    redbut.addEventListener('click',() =>{
+        color = 'red';
+    })
+    erasebut.addEventListener('click',() =>{
+        color = 'erase';
+    })
+    rbut.addEventListener('click',() =>{
+        color = 'random';
+    })
 
 
     // make grid-box
@@ -64,7 +96,7 @@
             gridbox.style.gridTemplateColumns = auto;
             console.log(auto);
             cell.addEventListener('mouseenter',(e) =>{
-                cell.style.backgroundColor = getRandColor();
+                cell.style.backgroundColor = getColor();
             })
             // cell.addEventListener('mouseleave',(e) =>{
             //     cell.style.backgroundColor = 'white';
@@ -74,9 +106,19 @@
         
     }
 
-    function getRandColor(){
-
-        return 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+    function getColor(){
+        switch(color){
+            case 'red':
+            return 'red';
+            break;
+            case 'erase':
+            return 'white';
+            break;
+            case 'random':
+            return 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+            break;
+        }
+       // 
         //return 'red';
     }
 
